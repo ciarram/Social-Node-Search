@@ -3,9 +3,17 @@ var Spotify = require('node-spotify-api');
 var request = require("request");
 var movieParam = process.argv;
 var movieName = "";
-var tweets = require('./keys.js');
-console.log(tweets);
 
+var tweets = require('./keys.js');
+//console.log(tweets);
+var params = {screen_name: 'mciarra16'};
+twitterkeys.get('statuses/user_timeline', params, function(error, tweets, response){
+        if (error) {
+            console.log(error);
+        } else{
+            console.log(tweets);
+        }
+    })
 
 // var spotify = new Spotify({
 //     id: '59a04cd1a6ea48f38896fec5af3160bc',
@@ -38,7 +46,7 @@ console.log(tweets);
 // request(queryUrl, function(error, response, body){
 //     if(error){
 //         throw error
-//     } else if(response.statusCode == 200){
+//     } else if(response.statusCode == 200 && "movie-this" == process.argv[2]){
 //         console.log("Title: " + JSON.parse(body).Title);
 //         console.log("Year Released: " +JSON.parse(body).Year);
 //         console.log("IMDB Rating: " + JSON.parse(body).imdbRating);
@@ -47,7 +55,7 @@ console.log(tweets);
 //         console.log("Language of Movie: " +JSON.parse(body).Language);
 //         console.log("Plot: " +JSON.parse(body).Plot);
 //         console.log("Actors: " +JSON.parse(body).Actors);
-//     } //else if(movieName == ""){
+//     } //else if(!movieName){
 
 //     //}
 
