@@ -1,42 +1,44 @@
 var Twitter = require('twitter');
 var Spotify = require('node-spotify-api');
 var request = require("request");
+var fs = require('fs');
 var movieParam = process.argv;
 var movieName = "";
+var song = "";
 
 
 var twitterKeys = require('./keys.js');
-//console.log(tweets);
 var params = {screen_name: 'mciarra16'};
-console.log(params);
 var myArgs = process.argv[2];
-console.log('myArgs: ', myArgs);
+//console.log('myArgs: ', myArgs);
 if (myArgs == "my-tweets"){
 twitterKeys.get('statuses/user_timeline', params, function(error, tweets, response){
         if (error) {
             console.log(error);
         } else{
-            console.log(tweets.created_at);
-            console.log(tweets.text)
+            console.log(tweets);
+            //console.log(tweets.text)
         }
     })
 }
+// if(myArgs == "spotify-this-song"){
 // var spotify = new Spotify({
 //     id: '59a04cd1a6ea48f38896fec5af3160bc',
 //     secret: '2f08c0e6e38f4f8dbfe411bd4a13ce9d'
 //   });
   
-//   spotify.search({ type: 'track', query: 'Hello', limit: 1 }, function(err, data) {
+//   spotify.search({ type: 'track', query: 'song', limit: 1 }, function(err, data) {
 //     if (err) {
 //       return console.log('Error occurred: ' + err);
 //     } else if (process.argv[2] == "spotify-this-song"){
   
-//     console.log(data.tracks.items[0].album.name); 
-//     console.log(data.tracks.items[0].artists[0].name)
-//     console.log(data.tracks.items[0].name)
-//     console.log(data.tracks.items[0].external_urls)
+//     console.log("Album: " + data.tracks.items[0].album.name); 
+//     console.log("Artist: " + data.tracks.items[0].artists[0].name)
+//     console.log("Song: " + data.tracks.items[0].name)
+//     console.log("Track: " + data.tracks.items[0].external_urls)
 //     }
 //   });
+// }
 
 if(myArgs == "movie-this"){
 
@@ -68,4 +70,14 @@ request(queryUrl, function(error, response, body){
     //}
 
 })
+}
+
+if(myArgs == "do-what-it-says"){
+    fs.readFile("random.txt", "utf8", function(error, data){
+        if(error){
+            throw error;
+        } else{
+            console.log(data);
+        }
+    })
 }
