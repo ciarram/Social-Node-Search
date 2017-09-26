@@ -6,18 +6,22 @@ var movieParam = process.argv;
 var movieName = "";
 var song = "";
 var songParam = process.argv;
-
+var myArgs = process.argv[2];
 
 var twitterKeys = require('./keys.js');
-var params = {screen_name: 'mciarra16'};
-var myArgs = process.argv[2];
+var params = {screen_name: 'mciarra16', count: 20};
+
 //console.log('myArgs: ', myArgs);
 if (myArgs == "my-tweets"){
 twitterKeys.get('statuses/user_timeline', params, function(error, tweets, response){
         if (error) {
             console.log(error);
         } else{
-            console.log(tweets);
+            for (var t = 0; t < tweets.length; t++){
+                console.log("Tweet: " + tweets[t].text);
+                console.log("Created at: " + tweets[t].created_at);
+            }
+            
             //console.log(tweets.text)
         }
     })
