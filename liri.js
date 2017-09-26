@@ -21,24 +21,23 @@ twitterKeys.get('statuses/user_timeline', params, function(error, tweets, respon
         }
     })
 }
-// if(myArgs == "spotify-this-song"){
-// var spotify = new Spotify({
-//     id: '59a04cd1a6ea48f38896fec5af3160bc',
-//     secret: '2f08c0e6e38f4f8dbfe411bd4a13ce9d'
-//   });
+if(myArgs == "spotify-this-song"){
+var spotify = new Spotify({
+    id: '59a04cd1a6ea48f38896fec5af3160bc',
+    secret: '2f08c0e6e38f4f8dbfe411bd4a13ce9d'
+  });
   
-//   spotify.search({ type: 'track', query: 'song', limit: 1 }, function(err, data) {
-//     if (err) {
-//       return console.log('Error occurred: ' + err);
-//     } else if (process.argv[2] == "spotify-this-song"){
-  
-//     console.log("Album: " + data.tracks.items[0].album.name); 
-//     console.log("Artist: " + data.tracks.items[0].artists[0].name)
-//     console.log("Song: " + data.tracks.items[0].name)
-//     console.log("Track: " + data.tracks.items[0].external_urls)
-//     }
-//   });
-// }
+  spotify.search({ type: 'track', query: 'blackbird', limit: 1 }, function(err, data) {
+    if (err) {
+      return console.log('Error occurred: ' + err);
+    } else {
+        console.log("Album: " + data.tracks.items[0].album.name); 
+        console.log("Artist: " + data.tracks.items[0].artists[0].name)
+        console.log("Song: " + data.tracks.items[0].name)
+        console.log("Track: " + data.tracks.items[0].external_urls.spotify)
+    }
+  });
+}
 
 if(myArgs == "movie-this"){
 
@@ -78,6 +77,21 @@ if(myArgs == "do-what-it-says"){
             throw error;
         } else{
             console.log(data);
+            var spotify = new Spotify({
+                id: '59a04cd1a6ea48f38896fec5af3160bc',
+                secret: '2f08c0e6e38f4f8dbfe411bd4a13ce9d'
+              });
+                spotify.search({ type: 'track', query: 'i want it that way', limit: 1 }, function(err, data) {
+                    if (err) {
+                      return console.log('Error occurred: ' + err);
+                    } else if (process.argv[2] == "spotify-this-song"){
+                        console.log(data);
+                        console.log("Album: " + data.tracks.items[0].album.name); 
+                        console.log("Artist: " + data.tracks.items[0].artists[0].name)
+                        console.log("Song: " + data.tracks.items[0].name)
+                        console.log("Track: " + data.tracks.items[0].external_urls)
+                    }
+                  });
         }
     })
 }
