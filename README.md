@@ -1,4 +1,4 @@
-# liri-node-app
+# Social Node Search
 To see the last 20 tweets on your or someone's Twitter account you can enter:
 ![screen shot 2017-09-25 at 11 40 25 pm](https://user-images.githubusercontent.com/25335077/30842088-e43e2872-a24d-11e7-89e9-553b90ac837e.png)
 to see the message in the tweet and when it was originally created.
